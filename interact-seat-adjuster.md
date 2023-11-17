@@ -1,8 +1,4 @@
----
-title: "Interact with Seat Adjuster"
-date: 2022-05-09T14:24:56+05:30
-weight: 6
----
+# Interact with Seat Adjuster
 
 We interact with the seat application through MQTT messages to emulate the behavior of an offboard application.
 To see the responses from the seat adjuster app, subscribe to the MQTT topic `seatadjuster/#``.
@@ -54,13 +50,12 @@ sdv-ctr-exec -n kuksa-client /kuksa-client/bin/kuksa-client --port 30555 --proto
 
 Congratulations, you have reached the end of the seat adjuster guide. Based on the used code, you can now continue to realize other applications by using other signals.
 You may need to adapt your `mock.py` accordingly.
-In addition, you can [connect the seat service to a CAN-environment](../can-seat-adjuster).
 
 ## References
 
 - [https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleSeat.vspec](https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleSeat.vspec)
 - [https://github.com/eclipse/kuksa.val.services/tree/main/seat_service](https://github.com/eclipse/kuksa.val.services/tree/main/seat_service)
 - [https://eclipse.dev/velocitas/docs/about/use_cases/seat_adjuster/](https://eclipse.dev/velocitas/docs/about/use_cases/seat_adjuster/)
-- [https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/v0.9.0/examples/seat-adjuster](https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/v0.9.0/examples/seat-adjuster)
+- [https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/main/examples/seat-adjuster](https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/main/examples/seat-adjuster)
 - [https://github.com/eclipse-leda/meta-leda/blob/main/meta-leda-components/recipes-sdv/eclipse-leda/kanto-containers/example/seatadjuster-app.json.disabled](https://github.com/eclipse-leda/meta-leda/blob/main/meta-leda-components/recipes-sdv/eclipse-leda/kanto-containers/example/seatadjuster-app.json.disabled)
 - [https://github.com/eclipse-leda/meta-leda/blob/main/meta-leda-components/recipes-sdv/eclipse-leda/kanto-containers/example/seatservice.json](https://github.com/eclipse-leda/meta-leda/blob/main/meta-leda-components/recipes-sdv/eclipse-leda/kanto-containers/example/seatservice.json)

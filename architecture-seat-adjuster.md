@@ -1,8 +1,4 @@
----
-title: "Architecture of Seat Adjuster"
-date: 2022-05-09T14:24:56+05:30
-weight: 2
----
+# Architecture of Companion Application
 
 The seat adjuster application interacts with the vehicle through a *Vehicle Abstraction Layer* created by the KUKSA Databroker,
 which uses the [Vehicle Signal Specification (VSS)](https://covesa.github.io/vehicle_signal_specification/)
@@ -46,7 +42,7 @@ mosquitto_pub -t seatadjuster/setPosition/request
 
 The position parameter can be any value between 0 and 1000.
 
-### Getting Seat Position
+## Getting Seat Position
 
 When the seat moves, the provider gets this information, for example, from the seat ECU over the CAN-bus.
 We use the mock service as a provider and configure it to set the current value for the `Vehicle.Cabin.Seat.Row1.Pos1.Position` signal in the KUKSA Databroker
@@ -80,4 +76,4 @@ flowchart TD
     mqttResponse -.-> anotherClient
 ```
 
-The next step is to [develop the seat adjuster with the help of Eclipse Velocitas](../develop-seat-adjuster).
+The next step is to [develop the seat adjuster with the help of Eclipse Velocitas](./develop-seat-adjuster.md).

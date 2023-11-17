@@ -1,8 +1,4 @@
----
-title: "Deploy Seat Adjuster"
-date: 2022-05-09T14:24:56+05:30
-weight: 4
----
+# Deploy Application
 
 We now want to deploy the application to a target device.
 You may follow the remainder of this guide on a separate device like a RaspberryPi, but you can emulate such a device on your development machine too.
@@ -10,14 +6,14 @@ Either way, we use Eclipse Leda in version 0.1.0-M2 as the target system, which 
 and Eclipse Kanto for container management.
 For more details on how to download and run Eclipse Leda, follow the respective guides:
 
-- [QEMU]({{< ref "/docs/general-usage/running-qemu" >}})
-- [Docker]({{< ref "/docs/general-usage/docker-setup" >}})
-- [RaspberryPi]({{< ref "/docs/general-usage/raspberry-pi" >}})
-- [Linux]({{< ref "/docs/general-usage/linux-setup" >}})
+- [QEMU](https://eclipse-leda.github.io/leda/docs/general-usage/running-qemu/)
+- [Docker](https://eclipse-leda.github.io/leda/docs/general-usage/docker-setup/)
+- [RaspberryPi](https://eclipse-leda.github.io/leda/docs/general-usage/raspberry-pi/)
+- [Linux](https://eclipse-leda.github.io/leda/docs/general-usage/linux-setup/)
 
 We recommend to get started with the QEMU setup.
 In any case, you now need to configure Eclipse Kanto to execute the application.
-For this, it helps to get an overview of which containers are currently running in Eclipse Kanto. You can get this either through the command:
+For this, it helps to get an overview of which containers are currently running in Eclipse Kanto. You can get this through the command:
 
 ```bash
 kantui
@@ -104,7 +100,7 @@ There, we define a number of environment variables for the container
 which configures the Eclipse Velocitas SDK to use the native middleware and where to find the MQTT-broker and the KUKSA Databroker to use.
 We did the same in `kanto-cm` call behind the parameter `--e=`.
 
-More details on the general deployment approach can be found in [Leda Vehicle Applications](/leda/docs/app-deployment/velocitas/)
+More details on the general deployment approach can be found in [Leda Vehicle Applications](https://eclipse-leda.github.io/leda/docs/app-deployment/velocitas/)
 
 > If the GitHub packages in which you stored the container image are private, Eclipse Kanto needs a valid access token to download the container image.
 You can create a personal access token in the `Developer Settings` of your GitHub account. Select `Personal access token` -> `Tokens (classic)`
@@ -141,7 +137,7 @@ With the container manifest below, Eclipse Kanto instead mounts from `/data/var/
 Therefore, you need to create this directory and the file with the content from below.
 
 You may now check with `kantui` or `kanto-cm list` whether all components (`databroker`, `seatadjuster-app`, and `mock-service`) are running well.
-The next step is to [interact with the seat adjuster](../interact-seat-adjuster).
+The next step is to [interact with the seat adjuster](./interact-seat-adjuster.md).
 
 ## seat-application.json
 

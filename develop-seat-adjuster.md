@@ -1,8 +1,4 @@
----
-title: "Develop Seat Adjuster"
-date: 2022-05-09T14:24:56+05:30
-weight: 3
----
+# Develop Application
 
 The following pages show how to execute the explained setup using Eclipse Velocitas and Eclipse Leda 0.1.0-M2:
 
@@ -11,11 +7,11 @@ On a high level, you need to perform the following steps described in more detai
 1. Use the Eclipse Velocitas template repository to develop, build and deploy your
 version of the [seat adjuster example](https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/main/examples/seat-adjuster).
 
-2. Run Eclipse Leda, for example, [as container](../../../general-usage/docker-setup) or with other options like [QEMU, physical hardware, etc.](../../../general-usage).
+2. Run Eclipse Leda, for example, [as container](https://eclipse-leda.github.io/leda/docs/general-usage/docker-setup/) or with other options like [QEMU, physical hardware, etc.](https://eclipse-leda.github.io/leda/docs/general-usage/).
 
-3. [Manage the Eclipse Kanto container runtime]({{< ref "/deploy-seat-adjuster" >}}) to deploy your seat adjuster application.
+3. [Manage the Eclipse Kanto container runtime](./deploy-seat-adjuster.md) to deploy your seat adjuster application.
 
-4. [Test the deployed setup]({{< ref "/interact-seat-adjuster" >}}) by interacting with the seat adjuster to change the seat position.
+4. [Test the deployed setup](./interact-seat-adjuster.md) by interacting with the seat adjuster to change the seat position.
 
 ## Setup Eclipse Velocitas from template repository
 
@@ -117,7 +113,7 @@ For more details see the [Eclipse Velocitas Model Generator](https://github.com/
 At this point, you may wonder how the application actually knows to which MQTT broker to connect and where to find the correct instance of the KUKSA Databroker.
 This service discovery is abstracted within the Velocitas SDK and involves the usage of so-called middleware to find and call the other components.
 As of writing this page, Eclipse Velocitas supports DAPR as middleware or uses the `native` approach to configure the correct address directly.
-The details of how to set and configure the used middleware are part of the [deployment](../deploy-seat-adjuster).
+The details of how to set and configure the used middleware are part of the [deployment](./deploy-seat-adjuster.md).
 
 > *Signal Description:* The signal indicates the seat position on the vehicle x-axis, where the value 0 is the frontmost position supported by the seat.
 
@@ -196,4 +192,4 @@ The subsequent release workflow will make the application available as a built c
 To do the release in GitHub, go to the `Code` tab and click `Releases` on the right side of the page.
 Then you can `Draft a new release`, create a new tag and title for the release, and click `Publish Release`, which triggers the `Release workflow`.
 
-The next step is to [deploy the seat adjuster in Eclipse Leda](../deploy-seat-adjuster)
+The next step is to [deploy the seat adjuster in Eclipse Leda](./deploy-seat-adjuster.md)
