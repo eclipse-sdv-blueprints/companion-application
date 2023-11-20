@@ -51,6 +51,17 @@ sdv-ctr-exec -n kuksa-client /kuksa-client/bin/kuksa-client --port 30555 --proto
 Congratulations, you have reached the end of the seat adjuster guide. Based on the used code, you can now continue to realize other applications by using other signals.
 You may need to adapt your `mock.py` accordingly.
 
+## Deployment for Vehicle
+
+To realize the described setup in a vehicle, you need to use a provider that is specific to the model and the covered VSS signals. As the picture below shows, this provider subscribes to changes in the relevant VSS signals in the Kuksa databroker. Upon changes, the provider interacts with the Seat ECU through the vehicle bus system, like a CAN bus. The ECU then controls the hardware, like the motor to adjust a seat.
+
+![Leda Seat Adjuster Use Case](./img/seatadjuster-can.png)
+
+A benefit of this setup is the split between vehicle-specific implementation and the general application.
+Splitting these aspects makes it easier to port the application to other vehicles and save on duplicate realizations of the application logic.
+
+At the same time, multiple applications interacting with the same VSS signal benefit from the re-use of the provider functionality instead of re-implementing the vehicle access again.
+
 ## References
 
 - [https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleSeat.vspec](https://github.com/COVESA/vehicle_signal_specification/blob/master/spec/Cabin/SingleSeat.vspec)
