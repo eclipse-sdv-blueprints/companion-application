@@ -13,7 +13,7 @@ we recommend to read the [SDV Tutorial](https://eclipse-leda.github.io/leda/docs
 The idea of the specific companion application introduced in this blueprint is to have a custom application to move the driver seat to positions defined
 in a driver profile hosted by a third-party web service.
 
-![Leda Seat Adjuster Use Case](./seatadjuster.png)
+![Leda Seat Adjuster Use Case](./img/seatadjuster.png)
 
 The setup contains the following components:
 
@@ -21,7 +21,6 @@ The setup contains the following components:
 - **Seat Adjuster** : Developed with Eclipse Velocitas to be deployed by user
 - Eclipse Kuksa.val - **KUKSA Databroker** (pre-installed with Eclipse Leda)
 - **Mock Service**: Example provider for Eclipse Kuksa.VAL which mocks the behavior of the vehicle.
-- Seat ECU and the separate Seat Motor hardware can be emulated using a virtual CAN-Bus, which is beyond the scope of this guide.
 
 In the following paragraphs, we next introduce the [architecture and the assumed data flow](./architecture-seat-adjuster.md)
 before we explain the [development](./develop-seat-adjuster.md) and [deployment](./deploy-seat-adjuster.md) steps.
