@@ -1,8 +1,8 @@
 # Deploy Application
 
 We now want to deploy the application to a target device.
-You may follow the remainder of this guide on a separate device like a RaspberryPi, but you can emulate such a device on your development machine too.
-Either way, we use Eclipse Leda in version 0.1.0-M2 as the target system, which is a Linux-based distribution with pre-installed SDV components like the KUKSA Databroker
+You may follow the remainder of this guide on a separate device like a RaspberryPi, but you can emulate such a device on your development machine, too.
+Either way, we use [Eclipse Leda in version 0.1.0-M3](https://github.com/eclipse-leda/leda-distro/releases/tag/v0.1.0-M3) as the target system, which is a Linux-based distribution with pre-installed SDV components like the KUKSA Databroker
 and Eclipse Kanto for container management.
 For more details on how to download and run Eclipse Leda, follow the respective guides:
 
@@ -37,7 +37,7 @@ Thus, the typical way to add or adapt containers is to modify the corresponding 
 
 ## Disable other containers
 
-The release 0.1.0-M2 of Eclipse Leda comes with a number of pre-configured and automatically executed containers.
+The release 0.1.0-M3 of Eclipse Leda comes with a number of pre-configured and automatically executed containers.
 One of these containers is the `feedercan` that feeds changing values from a recording for signals such as `Vehicle.Speed` to the KUKSA Databroker.
 These values interfere with the seat adjuster application, which only moves the seat if the vehicle speed is zero.
 Another interfering container is the `seatservice-example` which reacts to changes in the signal `Vehicle.Cabin.Seat.Row1.Pos1.Position`
@@ -78,7 +78,7 @@ kanto-cm logs --name seatadjuster-app
 
 ### Add manifest for seat adjuster
 
-As an alternative to using `kanto-cm`, you can add a container manifest to the directoy watched by the `kanto-auto-deployer` (`data/var/containers/manifests`).
+As an alternative to using `kanto-cm`, you can add a container manifest to the directory watched by the `kanto-auto-deployer` (`data/var/containers/manifests`).
 
 To add the container manifest, create a new file inside this folder.
 
