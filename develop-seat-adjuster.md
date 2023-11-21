@@ -138,10 +138,25 @@ The different runtimes are maintained in [a separate Eclipse Velocitas repositor
 we use the [Eclipse Velocitas CLI](https://github.com/eclipse-velocitas/cli):
 
 ```bash
-velocitas exec runtime-kanto up
+velocitas exec runtime-local up
 ```
+The local runtime allows you to debug your python vehicle app code. 
+Thus, in den development phase we opt for this runtime.
+Later, e.g. when you want to run your app in a similar environment as it would run on the target environment (e.g. Eclipse Leda), we can use the Eclipse Kanto runtime here. 
 
-We use the Eclipse Kanto runtime here since we later deploy the seat adjuster application to Eclipse Leda, which uses Eclipse Kanto for container management.
+To [debug](https://eclipse.dev/velocitas/docs/tutorials/quickstart/quickstart/#how-to-debug-your-_vehicle-app_) your app you can use the Python debugger of VSCode.
+This is done by setting a break point at the location of interest in your code and then Press ``F5`` to start a debug session.
+In case of the Seat Adjuster App, we can debug the function ``on_set_position_request_received`` (lines 67 -- 99) by placing a breakpoint at line 68 and pressing ``F5`` to start a debugging session.
+To trigger this function you can use the VSMQTT plugin and select the pre-configured local configuration (``mosquitto (local)``). Here you can publish a message to the topic, the function is registered for (``"seatadjuster/setPosition/request"``). 
+After sending the message to the topic, the debugger should be activated and the editor should open to step through your code.
+
+After completing your debugging session you can also [close the local environment](https://eclipse.dev/velocitas/docs/tutorials/quickstart/quickstart/#how-to-start-the-runtime-services) by pressing ``Ctrl + C`` in the debug terminal.
+
+To run your application within a container in Eclipse Kanto locally, simply use the [Eclipse Velocitas CLI](https://github.com/eclipse-velocitas/cli):
+
+```bash
+velocitas exec runtime-local up
+```
 
 Once the runtime is available, we add our application by executing:
 
