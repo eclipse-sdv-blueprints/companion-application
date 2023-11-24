@@ -45,7 +45,7 @@ and which we replace later with the `mock service`.
 
 Therefore, we need to stop the `feedercan` and the `seatservice-example` container.
 This is possible in `kantui` by selecting the respective entry and pressing `R`.
-In addition, you need to remove the corresponding container manifests in `/data/var/containers/manifests` to avoid that the Eclipse Kanto
+In addition, you need to remove the corresponding container manifests in `/data/var/containers/manifests` of the Eclipse Leda instance to avoid that the Eclipse Kanto
 auto-deployer re-deploys these containers. Another approach is to change the ending of the not-needed manifests to something other than `.json`.
 
 If the `feedercan` container still runs, the seat adjuster application app will later respond with the following error message:
@@ -87,15 +87,22 @@ touch seat-adjuster.json
 nano seat-adjuster.json
 ```
 
-and copy the [manifest from below](#seat-applicationjson). You can save the file with `strg+s` and close the window with `strg+q`.
+and copy the example [seatapplication.json](./data/var/containers/manifests/seatapplication.json). You can save the file with `strg+s` and close the window with `strg+q`.
 You can create the file on the development machine and copy it via scp too:
 
 `scp -P 2222 myapp.json root@localhost:/data/var/containers/manifests/`
 
-The example deployment descriptor below is available in
-[meta-leda-components](https://github.com/eclipse-leda/meta-leda/blob/main/meta-leda-components/recipes-sdv/eclipse-leda/kanto-containers/example/seatadjuster-app.json.disabled)
-too.
-An interesting aspect of the snippet is the `config.env` section at the bottom of the container manifest.
+The 'seatadjuster.json' references the container image to be used in line 4:
+
+```json
+"image": {
+        "name": "ghcr.io/<identifier-for-container>:<tag-for-container>"
+    },
+```
+
+You need to insert the address of the container image built in GitHub by the Eclipse Velocitas Release pipeline.
+
+Another interesting aspect of the snippet is the `config.env` section at the bottom of the container manifest.
 There, we define a number of environment variables for the container
 which configures the Eclipse Velocitas SDK to use the native middleware and where to find the MQTT-broker and the KUKSA Databroker to use.
 We did the same in `kanto-cm` call behind the parameter `--e=`.
@@ -127,98 +134,11 @@ Because we cannot assume that you have an actual ECU availabe for running this g
 with the [vehicle mock service](https://github.com/eclipse/kuksa.val.services/tree/main/mock_service) from the Eclipse Kuksa project.
 
 The mock service allows the definition of custom interaction sequences with the KUKSA Databroker. For instance, one can react to changes to specific signals
-or update signals with a time trigger. You can define the sequences in a Python file like the example [`mock.py`](#mockpy) below.
-The snippet shows how to use a change to the target value for the seat position signal as a trigger to update the current value to the target value step-wise
-over a duration of 10 seconds.
-
-For the deployment, you create another container manifest in `/data/var/containers/manifest` with the content from [below](#mockservicejson).
-The container manifest also mounts a custom `mock.py` into the container to replace the configuration of the [default mock.py](https://github.com/eclipse/kuksa.val.services/blob/main/mock_service/mock.py).
-With the container manifest below, Eclipse Kanto instead mounts from `/data/var/mock/mock.py`.
-Therefore, you need to create this directory and the file with the content from below.
-
-You may now check with `kantui` or `kanto-cm list` whether all components (`databroker`, `seatadjuster-app`, and `mock-service`) are running well.
-The next step is to [interact with the seat adjuster](./interact-seat-adjuster.md).
-
-## seat-application.json
-
-This is the Eclipse Kanto container manifest for the seat adjuster application.
-
-```json
-{
-    "container_id": "seatadjuster-app",
-    "container_name": "seatadjuster-app",
-    "image": {
-        "name": "ghcr.io/<identifier-for-container>:<tag-for-container>"
-    },
-    "host_config": {
-        "devices": [],
-        "network_mode": "bridge",
-        "privileged": false,
-        "restart_policy": {
-            "maximum_retry_count": 0,
-            "retry_timeout": 0,
-            "type": "unless-stopped"
-        },
-        "runtime": "io.containerd.runc.v2",
-        "extra_hosts": [        
-                "mosquitto:host_ip",
-                "databroker:container_databroker-host",
-                "seatservice-example:container_seatservice-example-host"
-        ],
-        "port_mappings": [
-            {
-              "protocol": "tcp",
-              "container_port": 30151,
-              "host_ip": "localhost",
-              "host_port": 50151,
-              "host_port_end": 50151
-            }
-        ],
-        "log_config": {
-            "driver_config": {
-                "type": "json-file",
-                "max_files": 2,
-                "max_size": "1M",
-                "root_dir": ""
-            },
-            "mode_config": {
-                "mode": "blocking",
-                "max_buffer_size": ""
-            }
-        },
-        "resources": null
-    },
-    "config": {
-        "env": [
-           "SDV_SEATSERVICE_ADDRESS=grpc://seatservice-example:50051",
-           "SDV_VEHICLEDATABROKER_ADDRESS=grpc://databroker:55555",
-           "SDV_MQTT_ADDRESS=mqtt://mosquitto:1883",
-           "SDV_MIDDLEWARE_TYPE=native",
-           "RUST_LOG=info",
-           "vehicle_data_broker=info"
-        ],
-        "cmd": []
-    }
-}
-```
-
-## mock.py
-
-This is the example `mock.py` for mocking a seat provider:
+or update signals with a time trigger. You can define the sequences in a Python file like the example [`mock.py`](./data/var/mock/mock.py) from this blueprint.
+The example shows how to use a change to the target value for the seat position signal as a trigger to update the current value to the target value step-wise
+over a duration of 10 seconds:
 
 ```python
-from lib.animator import RepeatMode
-from lib.dsl import (
-    create_animation_action,
-    create_behavior,
-    create_event_trigger,
-    create_set_action,
-    get_datapoint_value,
-    mock_datapoint,
-)
-
-from lib.trigger import ClockTrigger, EventType
-
 mock_datapoint(
     path="Vehicle.Cabin.Seat.Row1.Pos1.Position",
     initial_value=0,
@@ -232,57 +152,12 @@ mock_datapoint(
         )
     ],
 )
-
 ```
 
-## mockservice.json
+For the deployment, you create another container manifest in `/data/var/containers/manifest` with the content from [mockservice.json](./data/var/containers/manifests/mockservice.json).
+The container manifest also mounts a custom `mock.py` into the container to replace the configuration of the [default mock.py](https://github.com/eclipse/kuksa.val.services/blob/main/mock_service/mock.py).
+With the referenced container manifest, Eclipse Kanto instead mounts from `/data/var/mock/mock.py`.
+Therefore, you need to create this directory and the file from the example [`mock.py`](./data/var/mock/mock.py).
 
-The container manifest for the mockservice may look like the following snippet. Note, that the files referenced in the `source` of the `mount_points`
-needs to be present in the file system of your Eclipse Leda instance.
-
-```json
-{
-    "container_id": "mockservice",
-    "container_name": "mockservice",
-    "image": {
-        "name": "ghcr.io/eclipse/kuksa.val.services/mock_service:latest"
-    },
-    "mount_points": [
-        {
-            "source": "/data/var/mock/mock.py",
-            "destination": "/mock.py",
-            "propagation_mode": "rprivate"
-        }
-    ],
-    "host_config": {
-        "network_mode": "bridge",
-        "privileged": false,
-        "restart_policy": {
-            "maximum_retry_count": 0,
-            "retry_timeout": 0,
-            "type": "unless-stopped"
-        },
-        "runtime": "io.containerd.runc.v2",
-        "extra_hosts": [
-            "databroker:container_databroker-host"
-        ],
-        "log_config": {
-            "driver_config": {
-                "type": "json-file",
-                "max_files": 2,
-                "max_size": "1M",
-                "root_dir": ""
-            },
-            "mode_config": {
-                "mode": "blocking",
-                "max_buffer_size": ""
-            }
-        }
-    },
-    "config": {
-        "env": [
-           "VDB_ADDRESS=databroker:55555"
-        ]
-    }
-}
-```
+You may now check with `kantui` or `kanto-cm list` whether all components (`databroker`, `seatadjuster-app`, and `mock-service`) are running well.
+The next step is to [interact with the seat adjuster](./interact-seat-adjuster.md).
