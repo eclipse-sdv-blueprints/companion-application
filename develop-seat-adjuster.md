@@ -131,31 +131,40 @@ But it still makes sense to get a general idea of how to test and debug the code
 
 As mentioned before, the execution and, thus, the testing of the application requires a set of other components to be available
 like the KUKSA Databroker or an MQTT-broker.
-Furthermore, the deployment, the configuration, and the behavior of the application may change depending on the used (container) management solution.
-Therefore, Eclipse Velocitas allows the deployment of the required components and the application with the container management approach of choice inside the DevContainer.
+Furthermore, the deployment, the configuration, and the behavior of the application may change depending on the used container management solution.
+Therefore, Eclipse Velocitas allows the deployment of the required components and the application with the container management approach of choice inside the DevContainer and refers to this as runtime.
 
-The different runtimes are maintained in [a separate Eclipse Velocitas repository](https://github.com/eclipse-velocitas/devenv-runtimes). To start a runtime,
-we use the [Eclipse Velocitas CLI](https://github.com/eclipse-velocitas/cli):
+The different runtimes are maintained in [a separate Eclipse Velocitas repository](https://github.com/eclipse-velocitas/devenv-runtimes).
+We use the [Eclipse Velocitas CLI](https://github.com/eclipse-velocitas/cli) to start the local runtime first:
 
 ```bash
 velocitas exec runtime-local up
 ```
-The local runtime allows you to debug your python vehicle app code. 
-Thus, in den development phase we opt for this runtime.
-Later, e.g. when you want to run your app in a similar environment as it would run on the target environment (e.g. Eclipse Leda), we can use the Eclipse Kanto runtime here. 
+
+The local runtime allows you to debug your Python vehicle app code, which is the reason to use this runtime during debugging.
+Later, e.g., when you want to run your app in a similar environment as it would run on the target environment, like Eclipse Leda, we can use the respective runtime as explained below in [Kanto Runtime](#kanto-runtime):
 
 To [debug](https://eclipse.dev/velocitas/docs/tutorials/quickstart/quickstart/#how-to-debug-your-_vehicle-app_) your app you can use the Python debugger of VSCode.
-This is done by setting a break point at the location of interest in your code and then Press ``F5`` to start a debug session.
-In case of the Seat Adjuster App, we can debug the function ``on_set_position_request_received`` (lines 67 -- 99) by placing a breakpoint at line 68 and pressing ``F5`` to start a debugging session.
-To trigger this function you can use the VSMQTT plugin and select the pre-configured local configuration (``mosquitto (local)``). Here you can publish a message to the topic, the function is registered for (``"seatadjuster/setPosition/request"``). 
+As an initial step, you need to set a breakpoint at the location of interest by clicking next to the line number. To then start a debug session, press ``F5``.
+In the case of the Seat Adjuster application, we can debug the function ``on_set_position_request_received`` by placing a breakpoint inside the function.
+To trigger the execution of this function, send and receive MQTT messages with the VSMQTT plugin through the pre-configured local configuration (``mosquitto (local)``).
+You find the plugin with a cloud icon in the left side of the VSCode instance connected to the DevContainer.
+
+Here, you can publish a message on the topic:
+
+``"seatadjuster/setPosition/request"``
+
+, to which the function registers itself.
 After sending the message to the topic, the debugger should be activated and the editor should open to step through your code.
 
-After completing your debugging session you can also [close the local environment](https://eclipse.dev/velocitas/docs/tutorials/quickstart/quickstart/#how-to-start-the-runtime-services) by pressing ``Ctrl + C`` in the debug terminal.
+When you complete your debugging session, you can also [close the local environment](https://eclipse.dev/velocitas/docs/tutorials/quickstart/quickstart/#how-to-start-the-runtime-services) by pressing ``Ctrl + C`` in the terminal in which you started the local runtime.
+
+### Kanto Runtime
 
 To run your application within a container in Eclipse Kanto locally, simply use the [Eclipse Velocitas CLI](https://github.com/eclipse-velocitas/cli):
 
 ```bash
-velocitas exec runtime-local up
+velocitas exec runtime-kanto up
 ```
 
 Once the runtime is available, we add our application by executing:
@@ -165,9 +174,7 @@ velocitas exec deployment-kanto build-vehicleapp
 velocitas exec deployment-kanto deploy-vehicleapp
 ```
 
-You can now test the application by interacting with it through the local MQTT broker.
-To send and receive MQTT messages, use the VSMQTT plugin with a cloud icon
-in the left side of the VSCode instance connected to the DevContainer.
+You can now test the application by interacting with it through the MQTT broker from the Eclipse Kanto runtime.
 We do not get into details for the topics and messages here since we will run the application in Eclipse Leda again later in this guide.
 
 Once you finish the application testing and development, you can shutdown the runtime with:
