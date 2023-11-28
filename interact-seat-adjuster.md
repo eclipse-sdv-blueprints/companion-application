@@ -40,10 +40,10 @@ kanto-cm --name <container-name> logs
 
 Besides trusting the log information and the MQTT messages that the seat position in the KUKSA Databroker has changed you can read the values
 directly from the KUKSA Databroker with the KUKSA Client.
-Through the `sdv-ctr-exec` it becomes possible to interact with the CLI of the Eclipse KUKSA Client:
+Through the `sdv-ctr-exec` it becomes possible to interact with the CLI of the Eclipse KUKSA Client (the following command will only work with kuksa-client tags up to 0.3.0):
 
 ```bash
-kanto-cm create --i --t --network=host --name=kuksa-client ghcr.io/eclipse/kuksa.val/kuksa-client:master
+kanto-cm create --i --t --network=host --name=kuksa-client ghcr.io/eclipse/kuksa.val/kuksa-client:0.3.0
 kanto-cm start --name=kuksa-client
 sdv-ctr-exec -n kuksa-client /kuksa-client/bin/kuksa-client --port 30555 --protocol grpc --insecure
 ```
