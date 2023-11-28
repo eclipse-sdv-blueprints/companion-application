@@ -1,6 +1,6 @@
 # Develop Application
 
-The following pages show how to execute the explained setup using Eclipse Velocitas and Eclipse Leda 0.1.0-M2:
+The following pages show how to execute the explained setup using Eclipse Velocitas and Eclipse Leda 0.1.0-M3:
 
 On a high level, you need to perform the following steps described in more detail in this guide:
 
