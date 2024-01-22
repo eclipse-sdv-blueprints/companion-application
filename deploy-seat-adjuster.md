@@ -109,7 +109,7 @@ because GitHub will not show it again.
 You can now configure Eclipse Kanto in Eclipse Leda to use the token by executing:
 `sdv-kanto-ctl add-registry -h <registryhostname> -u <your_username> -p <your_password>`. In the case of GitHub, the `registryhostname` is `ghcr.io`
 , the username is your GitHub handle, and the password is the generated token.
-See [Container Registries]({{< ref "/docs/device-provisioning/container-management" >}}) for more details.
+See [the Eclipse Leda documentation on Container Registries](https://eclipse-leda.github.io/leda/docs/device-provisioning/container-management/container-registries/) for more details.
 
 To make sure that Eclipse Kanto detects the changes in the `manifests` folder, you can restart the respective system services:
 
