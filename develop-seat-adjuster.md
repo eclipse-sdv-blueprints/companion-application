@@ -49,7 +49,11 @@ In the next step, we work on the actual application. You find the skeleton code 
 
 Eclipse Velocitas provides the code
 to realize the described seat adjuster application.
-One way to get the code is to use a pre-configured task in VSCode by pressing 'F1' and then typing 'Run Task'.
+One way to download the example code is to use a pre-configured task in VSCode by running the following steps:
+
+1. Press F1
+2. Write `Tasks: Run Task` and press enter
+3. Write `Import example app from SDK` and press enter
 
 As an alternative, you can check the latest version of the seat adjuster example code
 in the [Eclipse Velocitas SDK repository](https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/main/examples/seat-adjuster/src)
