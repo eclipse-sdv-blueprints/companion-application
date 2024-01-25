@@ -9,7 +9,7 @@ To control the position of the driver seat, the seat adjuster sets the target va
 
 The architecture assumes so-called actuation providers that apply the changes to the actual vehicle as indicated in the target value, e.g.,
 through interaction with the responsible ECUs.
-For this tutorial, we do not expect you to interface with an actual vehicle and thus abstract the vehicle by using the Kuksa.Val vehicle mock service.
+For this tutorial, we do not expect you to interface with an actual vehicle and thus abstract the vehicle by using the KUKSA.Val vehicle mock service.
 This vehicle mock service allows the definition of behavior toward the KUKSA Databroker like we would expect from the vehicle, for example,
 setting the current value after reacting to changes to the target value of a signal.
 
