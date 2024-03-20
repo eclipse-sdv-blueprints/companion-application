@@ -1,17 +1,6 @@
 # Develop Application
 
-The following pages show how to execute the explained setup using Eclipse Velocitas and Eclipse Leda 0.1.0-M2:
-
-On a high level, you need to perform the following steps described in more detail in this guide:
-
-1. Use the Eclipse Velocitas template repository to develop, build and deploy your
-version of the [seat adjuster example](https://github.com/eclipse-velocitas/vehicle-app-python-sdk/tree/main/examples/seat-adjuster).
-
-2. Run Eclipse Leda, for example, [as container](https://eclipse-leda.github.io/leda/docs/general-usage/docker-setup/) or with other options like [QEMU, physical hardware, etc.](https://eclipse-leda.github.io/leda/docs/general-usage/).
-
-3. [Manage the Eclipse Kanto container runtime](./deploy-seat-adjuster.md) to deploy your seat adjuster application.
-
-4. [Test the deployed setup](./interact-seat-adjuster.md) by interacting with the seat adjuster to change the seat position.
+After we established [the architecture](./architecture-seat-adjuster.md) of what we want to build, it is time to develop the application with the help of the Eclipse Velocitas DevContainer and templates.
 
 ## Setup Eclipse Velocitas from template repository
 
