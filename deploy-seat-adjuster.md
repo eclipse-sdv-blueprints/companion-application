@@ -102,14 +102,10 @@ We did the same in `kanto-cm` call behind the parameter `--e=`.
 
 More details on the general deployment approach can be found in [Leda Vehicle Applications](https://eclipse-leda.github.io/leda/docs/app-deployment/velocitas/)
 
-> If the GitHub packages in which you stored the container image are private, Eclipse Kanto needs a valid access token to download the container image.
-You can create a personal access token in the `Developer Settings` of your GitHub account. Select `Personal access token` -> `Tokens (classic)`
-and `generate a new token` that at least has the `read:packages` permission. Copy the generated token to a secure location or to Eclipse Kanto
-because GitHub will not show it again.
-You can now configure Eclipse Kanto in Eclipse Leda to use the token by executing:
-`sdv-kanto-ctl add-registry -h <registryhostname> -u <your_username> -p <your_password>`. In the case of GitHub, the `registryhostname` is `ghcr.io`
-, the username is your GitHub handle, and the password is the generated token.
-See [the Eclipse Leda documentation on Container Registries](https://eclipse-leda.github.io/leda/docs/device-provisioning/container-management/container-registries/) for more details.
+For the deployment to work,  Eclipse Kanto needs access rights to download the referenced container image. If your application repository is `private`, you have to configure Eclipse Kanto with an access token to get the required access rights. More details on how to create and set the token are available in:
+
+- the [troubleshooting page](./troubleshooting.md#you-get-a-401-unauthorized-error-when-trying-to-download-the-container-image-of-your-application) at the end of this guide
+- the [Eclipse Leda documentation](https://eclipse-leda.github.io/leda/docs/device-provisioning/container-management/container-registries/).
 
 To make sure that Eclipse Kanto detects the changes in the `manifests` folder, you can restart the respective system services:
 
