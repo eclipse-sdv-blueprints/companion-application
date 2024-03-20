@@ -25,3 +25,5 @@ The setup contains the following components:
 In the following paragraphs, we next introduce the [architecture and the assumed data flow](./architecture-seat-adjuster.md)
 before we explain the [development](./develop-seat-adjuster.md) and [deployment](./deploy-seat-adjuster.md) steps.
 If you are more interested in the general development steps, you may directly jump to the [develop seat adjuster](./develop-seat-adjuster.md).
+
+If you run into any issues while following this guide, you can check the [troubleshooting page](./troubleshooting.md) for possible hints.
