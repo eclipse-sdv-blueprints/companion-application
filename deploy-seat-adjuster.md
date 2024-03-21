@@ -44,9 +44,9 @@ Another interfering container is the `seatservice-example` which reacts to chang
 and which we replace later with the `mock service`.
 
 Therefore, we need to stop the `feedercan` and the `seatservice-example` container.
-This is possible in `kantui` by selecting the respective entry and pressing `R`.
+This is possible in `kantui` by selecting the respective entry and pressing `r`. The processing of this input may take a couple of seconds and the command is case-sensitive.
 In addition, you need to remove the corresponding container manifests in `/data/var/containers/manifests` to avoid that the Eclipse Kanto
-auto-deployer re-deploys these containers. Another approach is to change the ending of the not-needed manifests to something other than `.json`.
+auto-deployer re-deploys these containers. Another approach is to change the ending of the not-needed manifests to something other than `.json`, like `.disabled`.
 
 If the `feedercan` container still runs, the seat adjuster application app will later respond with the following error message:
 
