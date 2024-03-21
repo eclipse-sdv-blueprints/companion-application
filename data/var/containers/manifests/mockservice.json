@@ -1,0 +1,44 @@
+{
+    "container_id": "mockservice",
+    "container_name": "mockservice",
+    "image": {
+        "name": "ghcr.io/eclipse/kuksa.val.services/mock_service:latest"
+    },
+    "mount_points": [
+        {
+            "source": "/data/var/mock/mock.py",
+            "destination": "/mock.py",
+            "propagation_mode": "rprivate"
+        }
+    ],
+    "host_config": {
+        "network_mode": "bridge",
+        "privileged": false,
+        "restart_policy": {
+            "maximum_retry_count": 0,
+            "retry_timeout": 0,
+            "type": "unless-stopped"
+        },
+        "runtime": "io.containerd.runc.v2",
+        "extra_hosts": [
+            "databroker:container_databroker-host"
+        ],
+        "log_config": {
+            "driver_config": {
+                "type": "json-file",
+                "max_files": 2,
+                "max_size": "1M",
+                "root_dir": ""
+            },
+            "mode_config": {
+                "mode": "blocking",
+                "max_buffer_size": ""
+            }
+        }
+    },
+    "config": {
+        "env": [
+           "VDB_ADDRESS=databroker:55555"
+        ]
+    }
+}
