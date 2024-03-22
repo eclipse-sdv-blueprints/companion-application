@@ -60,17 +60,18 @@ Since they consume resources and are not needed for the seat adjustment, you may
 
 ## Starting of container
 
+The quickest way to start the container is to use the `kanto-cm create` command from the terminal. However, this configuration does not persist across a reboot of your Eclipse Leda instance. We, therefore, recommend that you use the approach described below to add a container manifest. The container manifest is a bit like creating a Pod or Deployment description in Kubernetes.
+
 ### Use `kanto-cm`
 
+To start the container in Eclipse Kanto from the terminal, you can use the following command. Before pasting the command to the terminal, replace the placeholders in `<>` with the URL of your seat application container image. One example is:
+
+`ghcr.io/yourGitHubUser/seat-application/seatadjuster:0.0.5`
+
+The full URL for your container is available on GitHub. Select the container under `Packages` on the right side of the `Code` tab view. You should then see the package overview and can check the URL in the installation example behind `docker pull`.
+
 ```bash
-kanto-cm create \
-    --name seatadjuster-app \
-    --e="SDV_SEATSERVICE_ADDRESS=grpc://seatservice-example:50051" \
-    --e="SDV_MQTT_ADDRESS=mqtt://mosquitto:1883" \
-    --e="SDV_VEHICLEDATABROKER_ADDRESS=grpc://databroker:55555" \
-    --e="SDV_MIDDLEWARE_TYPE=native" \
-    --hosts="databroker:container_databroker-host, mosquitto:host_ip, seatservice-example:container_seatservice-example-host" \
-    ghcr.io/<YOUR_ORG>/seat-adjuster-app:latest
+kanto-cm create --name seatadjuster-app --e="SDV_SEATSERVICE_ADDRESS=grpc://seatservice-example:50051" --e="SDV_MQTT_ADDRESS=mqtt://mosquitto:1883" --e="SDV_VEHICLEDATABROKER_ADDRESS=grpc://databroker:55555" --e="SDV_MIDDLEWARE_TYPE=native" --hosts="databroker:container_databroker-host, mosquitto:host_ip, seatservice-example:container_seatservice-example-host" ghcr.io/<identifier-for-container>:<tag-for-container>
 
 kanto-cm start --name seatadjuster-app
 kanto-cm logs --name seatadjuster-app
@@ -88,6 +89,9 @@ nano seat-adjuster.json
 ```
 
 and copy the [manifest from below](#seat-applicationjson). You can save the file with `strg+s` and close the window with `strg+q`.
+
+Inside the manifest file, you need to adapt the reference to your seat application container image by modifying `image.name`. For more details on the URL for the container image, see the paragraph on using `kanto-cm create` above.
+
 You can create the file on the development machine and copy it via scp too:
 
 `scp -P 2222 myapp.json root@localhost:/data/var/containers/manifests/`
