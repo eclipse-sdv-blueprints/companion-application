@@ -35,6 +35,8 @@ to describe a desired software state for the overall vehicle.
 Eclipse Leda has the `kanto-auto-deployer` systemd service, which applies any changes to the manifests in `/data/var/containers/manifests` to Eclipse Kanto.
 Thus, the typical way to add or adapt containers is to modify the corresponding container manifest.
 
+It is important to note that the given file path is relative to the root of the filesystem due to the leading `/`. For instance, from the home directory, in which you are located by default after the login, you need to go two directories upwards (`cd ../..`) to see the `/data` directory.
+
 ## Disable other containers
 
 The release 0.1.0-M2 of Eclipse Leda comes with a number of pre-configured and automatically executed containers.
