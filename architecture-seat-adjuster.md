@@ -1,5 +1,20 @@
 # Architecture of Companion Application
 
+## High-level architecture model
+
+The seat adjuster application's role is to take an input from a client application regarding the desired seat position, and control the adjustment of the seat to match this request. 
+When receiving a request, the application can refuse the request in certain conditions, for instance if the vehicle is currently moving.
+
+The diagram below from the Capella model represents these features at system level (the full Capella model can be found in folder "Seat adjuster application architecture")
+
+![image](https://github.com/user-attachments/assets/cc6539fe-66f9-4da4-abf6-e39ba255be93)
+
+These desired behaviors can be refined to design a physical architecture that also provides implementation solutions. A proposer solution is represented on the following architecture diagram:
+
+![image](https://github.com/user-attachments/assets/52e7acdd-4244-4393-85bc-fb88b06abc2f)
+
+
+
 The seat adjuster application interacts with the vehicle through a *Vehicle Abstraction Layer* created by the KUKSA Databroker,
 which uses the [Vehicle Signal Specification (VSS)](https://covesa.github.io/vehicle_signal_specification/)
 to express the current value and in case of actuators also the desired state of the vehicle signal.
