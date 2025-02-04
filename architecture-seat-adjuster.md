@@ -2,8 +2,7 @@
 
 ## High-level architecture model
 
-The seat adjuster application's role is to take an input from a client application regarding the desired seat position, and control the adjustment of the seat to match this request. 
-When receiving a request, the application can refuse the request in certain conditions, for instance if the vehicle is currently moving.
+The companion application developed in this blueprint is a seat adjuster. Its main role is to adapt the position of a car seat following an input request from a client. When receiving such a request, the application can refuse the request in certain conditions, for instance if the vehicle is currently moving.
 
 The diagram below from the Capella model represents these features at system level (the full Capella model can be found in folder "Seat adjuster application architecture")
 
