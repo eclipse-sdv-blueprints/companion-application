@@ -1,14 +1,15 @@
 # Architecture of Companion Application
 
-## High-level architecture model
+## High-level architecture design with Capella
 
-The companion application developed in this blueprint is a seat adjuster. Its main role is to adapt the position of a car seat following an input request from a client. When receiving such a request, the application can refuse the request in certain conditions, for instance if the vehicle is currently moving.
+When starting the development of an application such as this one, you can use the MBSE tool Eclipse Capella to support architecture design. In this tutorial, we provide a Capella model to illustrate how the tool, with the Systems Engineering methodology it embeds, can help you to identify needs and define an architecture from there.
 
-The diagram below from the Capella model represents these features at system level (the full Capella model can be found in folder "Seat adjuster application architecture")
+The companion application developed in this blueprint is a seat adjuster. The main high-level need with this system is to adapt the seat position based on a client's request. While defining the application's own capabilities in Capella's System Analysis level, we also determine that the application can accept or refuse the request in certain conditions, for instance, while the vehicle is moving. 
+The diagram below from the Capella model represents these features at system level (the full Capella model can be found in folder "Seat adjuster application architecture").
 
 ![image](https://github.com/user-attachments/assets/cc6539fe-66f9-4da4-abf6-e39ba255be93)
 
-These desired behaviors can be refined to design a physical architecture that also provides implementation solutions. A proposer solution is represented on the following architecture diagram:
+After defining the application's functions in the System Analysis perspective of Arcadia, the Logical and Physical Architectures perspective support the design and refinement of an architecture that will enable these features. For this tutorial, we the proposed solution is represented on the following architecture diagram:
 
 ![image](https://github.com/user-attachments/assets/52e7acdd-4244-4393-85bc-fb88b06abc2f)
 
