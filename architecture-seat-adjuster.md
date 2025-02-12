@@ -15,8 +15,7 @@ The diagram below from the Capella model represents these features at system lev
 
 After defining the application's functions in the System Analysis perspective of Arcadia, the Logical and Physical Architecture perspectives helps design and define an architecture that enables the realization of these functions. The Physical Architecture Diagram below represent the final architecture, with the components and interfaces defined during the analysis:
 
-![image](https://github.com/user-attachments/assets/52e7acdd-4244-4393-85bc-fb88b06abc2f)
-
+![image](https://github.com/user-attachments/assets/d77afc06-1b22-4528-afc7-4efb2850f2f8)
 
 
 The seat adjuster application interacts with the vehicle through a *Vehicle Abstraction Layer* created by the KUKSA Databroker,
