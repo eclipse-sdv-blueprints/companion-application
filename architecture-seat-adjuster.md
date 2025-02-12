@@ -13,7 +13,7 @@ The diagram below from the Capella model represents these features at system lev
 
 ![image](https://github.com/user-attachments/assets/cc6539fe-66f9-4da4-abf6-e39ba255be93)
 
-After defining the application's functions in the System Analysis perspective of Arcadia, the Logical and Physical Architectures perspective support the design and refinement of an architecture that will enable these features. For this tutorial, we the proposed solution is represented on the following architecture diagram:
+After defining the application's functions in the System Analysis perspective of Arcadia, the Logical and Physical Architecture perspectives helps design and define an architecture that enables the realization of these functions. The Physical Architecture Diagram below represent the final architecture, with the components and interfaces defined during the analysis:
 
 ![image](https://github.com/user-attachments/assets/52e7acdd-4244-4393-85bc-fb88b06abc2f)
 
