@@ -2,9 +2,13 @@
 
 ## High-level architecture design with Capella
 
-When starting the development of an application such as this one, you can use the MBSE tool Eclipse Capella to support architecture design. In this tutorial, we provide a Capella model to illustrate how the tool, with the Systems Engineering methodology it embeds, can help you to identify needs and define an architecture from there.
+When starting the development of an application such as this one, you can use the MBSE tool Eclipse Capella to help designing its architecture. In this tutorial, we provide a Capella model to illustrate how the tool, with the Systems Engineering methodology it embeds, can help you to identify needs and define a suitable architecture from there. For more information on Eclipse Capella and how to open the provided model, you can refer to the [dedicated section](./how-to-open-capella-model.md)
 
-The companion application developed in this blueprint is a seat adjuster. The main high-level need with this system is to adapt the seat position based on a client's request. While defining the application's own capabilities in Capella's System Analysis level, we also determine that the application can accept or refuse the request in certain conditions, for instance, while the vehicle is moving. 
+The companion application developed in this blueprint is a seat adjuster. The main user need here is to adapt the seat position based on a client's request. This user need is identified during the Operational Analysis stage in Capella which, for this tutorial, can be summarized by the following simple Operational Architecture Diagram:
+
+![image](https://github.com/user-attachments/assets/08a7e405-ae9b-428f-9934-32863ae82d51)
+
+While defining the application's own capabilities in Capella's System Analysis level, we also determine that the application can accept or refuse the request in certain conditions, for instance, while the vehicle is moving. 
 The diagram below from the Capella model represents these features at system level (the full Capella model can be found in folder "Seat adjuster application architecture").
 
 ![image](https://github.com/user-attachments/assets/cc6539fe-66f9-4da4-abf6-e39ba255be93)
