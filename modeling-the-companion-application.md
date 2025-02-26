@@ -62,7 +62,7 @@ This perspective provides a first break-down of the system and a notional view o
 In the Logical Architecture perspective, we give a first break-down of the application's architecture, i.e. of the way it will be constructed, and how the functions will be allocated to each part of the application.
 Note that, at this stage of the architecture design, we make the decision to break down the Actor "Vehicle" from the System Analysis into two Logical Actors, "Vehicle Abstraction Layer" and "Vehicle provider". 
 
-![PLogical architecture](./img/logical-architecture-blank.png)
+![Logical architecture](./img/logical-architecture-blank.png)
 
 ### Physical Architecture
 
