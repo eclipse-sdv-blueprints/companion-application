@@ -26,13 +26,15 @@ In the following pages, we first introduce the [architecture and the assumed dat
 
 We then show how to realize the introduced architecture with Eclipse Velocitas and Eclipse Leda 0.1.0-M2. On a high level, you will perform the following steps and we describe each step in more detail in this guide. So simply [continue reading](./architecture-seat-adjuster.md):
 
-1. [Setup the Eclipse Velocitas template repository](./develop-seat-adjuster.md#setup-eclipse-velocitas-from-template-repository) to develop, build and deploy your
+1. [Modeling the Companion Application with Eclipse Capella](./modeling-the-companion-application.md) to see an overview on how the application's architecture can be designed and modeled with the MSBE Tool Eclipse Capella
+
+2. [Setup the Eclipse Velocitas template repository](./develop-seat-adjuster.md#setup-eclipse-velocitas-from-template-repository) to develop, build and deploy your
 version of the seat adjuster example in a VSCode DevContainer.
 
-2. [Run Eclipse Leda](./deploy-seat-adjuster.md), for example, as container or with other options like QEMU, physical hardware, etc.
+3. [Run Eclipse Leda](./deploy-seat-adjuster.md), for example, as container or with other options like QEMU, physical hardware, etc.
 
-3. [Manage the Eclipse Kanto container runtime](./deploy-seat-adjuster.md) in Eclipse Leda to deploy your seat adjuster application.
+4. [Manage the Eclipse Kanto container runtime](./deploy-seat-adjuster.md) in Eclipse Leda to deploy your seat adjuster application.
 
-4. [Test the deployed setup](./interact-seat-adjuster.md) in Eclipse Leda by interacting with the seat adjuster over MQTT to change the seat position.
+5. [Test the deployed setup](./interact-seat-adjuster.md) in Eclipse Leda by interacting with the seat adjuster over MQTT to change the seat position.
 
 If you run into any issues while following this guide, you can check the [troubleshooting page](./troubleshooting.md) for possible hints.
