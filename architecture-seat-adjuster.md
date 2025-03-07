@@ -76,4 +76,4 @@ flowchart TD
     mqttResponse -.-> anotherClient
 ```
 
-The next step is to [develop the seat adjuster with the help of Eclipse Velocitas](./develop-seat-adjuster.md).
+The next step is to [model the Companion application architecture with Eclipse Capella](./modeling-the-companion-application.md).
